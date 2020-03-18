@@ -32,23 +32,23 @@ html, body, .container {
 </nav>
 
 <h2>Equipe 1</h2>
-<a href='javascript:peuplerTas(1, "V♠ ");'>V♠ </a>
-&nbsp;<a href='javascript:peuplerTas(1, "9♠ ");'>9♠ </a>
-&nbsp;<a href='javascript:peuplerTas(1, "A♠ ");'>A♠ </a>
-&nbsp;<a href='javascript:peuplerTas(1, "10♠ ");'>10♠ </a>
-&nbsp;<a href='javascript:peuplerTas(1, "R♠ ");'>R♠ </a>
-&nbsp;<a href='javascript:peuplerTas(1, "D♠ ");'>D♠ </a>
-&nbsp;<a href='javascript:peuplerTas(1, "8♠ ");'>8♠ </a>
-&nbsp;<a href='javascript:peuplerTas(1, "7♠ ");'>7♠ </a>
+<a href='javascript:peuplerTas(1, "V♠");'>V♠ </a>
+&nbsp;<a href='javascript:peuplerTas(1, "9♠");'>9♠ </a>
+&nbsp;<a href='javascript:peuplerTas(1, "A♠");'>A♠ </a>
+&nbsp;<a href='javascript:peuplerTas(1, "10♠");'>10♠ </a>
+&nbsp;<a href='javascript:peuplerTas(1, "R♠");'>R♠ </a>
+&nbsp;<a href='javascript:peuplerTas(1, "D♠");'>D♠ </a>
+&nbsp;<a href='javascript:peuplerTas(1, "8♠");'>8♠ </a>
+&nbsp;<a href='javascript:peuplerTas(1, "7♠");'>7♠ </a>
 <br />
 <a href='javascript:peuplerTas(1, "V♥ ");'>V♥ </a>
-&nbsp;<a href='javascript:peuplerTas(1, "9♥ ");'>9♥ </a>
-&nbsp;<a href='javascript:peuplerTas(1, "A♥ ");'>A♥ </a>
-&nbsp;<a href='javascript:peuplerTas(1, "10♥ ");'>10♥ </a>
-&nbsp;<a href='javascript:peuplerTas(1, "R♥ ");'>R♥ </a>
-&nbsp;<a href='javascript:peuplerTas(1, "D♥ ");'>D♥ </a>
-&nbsp;<a href='javascript:peuplerTas(1, "8♥ ");'>8♥ </a>
-&nbsp;<a href='javascript:peuplerTas(1, "7♥ ");'>7♥ </a>
+&nbsp;<a href='javascript:peuplerTas(1, "9♥");'>9♥ </a>
+&nbsp;<a href='javascript:peuplerTas(1, "A♥");'>A♥ </a>
+&nbsp;<a href='javascript:peuplerTas(1, "10♥");'>10♥ </a>
+&nbsp;<a href='javascript:peuplerTas(1, "R♥");'>R♥ </a>
+&nbsp;<a href='javascript:peuplerTas(1, "D♥");'>D♥ </a>
+&nbsp;<a href='javascript:peuplerTas(1, "8♥");'>8♥ </a>
+&nbsp;<a href='javascript:peuplerTas(1, "7♥");'>7♥ </a>
 <br />
 <a href='javascript:peuplerTas(1, "V♦");'>V♥ </a>
 &nbsp;<a href='javascript:peuplerTas(1, "9♦");'>9♦</a>
@@ -60,13 +60,13 @@ html, body, .container {
 &nbsp;<a href='javascript:peuplerTas(1, "7♦");'>7♦</a>
 <br />
 <a href='javascript:peuplerTas(1, "V♣ ");'>V♥ </a>
-&nbsp;<a href='javascript:peuplerTas(1, "9♣ ");'>9♣ </a>
-&nbsp;<a href='javascript:peuplerTas(1, "A♣ ");'>A♣ </a>
-&nbsp;<a href='javascript:peuplerTas(1, "10♣ ");'>10♣ </a>
-&nbsp;<a href='javascript:peuplerTas(1, "R♣ ");'>R♣ </a>
-&nbsp;<a href='javascript:peuplerTas(1, "D♣ ");'>D♣ </a>
-&nbsp;<a href='javascript:peuplerTas(1, "8♣ ");'>8♣ </a>
-&nbsp;<a href='javascript:peuplerTas(1, "7♣ ");'>7♣ </a>
+&nbsp;<a href='javascript:peuplerTas(1, "9♣");'>9♣ </a>
+&nbsp;<a href='javascript:peuplerTas(1, "A♣");'>A♣ </a>
+&nbsp;<a href='javascript:peuplerTas(1, "10♣");'>10♣ </a>
+&nbsp;<a href='javascript:peuplerTas(1, "R♣");'>R♣ </a>
+&nbsp;<a href='javascript:peuplerTas(1, "D♣");'>D♣ </a>
+&nbsp;<a href='javascript:peuplerTas(1, "8♣");'>8♣ </a>
+&nbsp;<a href='javascript:peuplerTas(1, "7♣");'>7♣ </a>
 <br />
 
 Tas : <div id="equipe1cartes"></div>
@@ -76,22 +76,22 @@ Tas : <div id="equipe1cartes"></div>
 
 <h2>Equipe 2</h2>
 <a href='javascript:peuplerTas(2, "V♠ ");'>V♠ </a>
-&nbsp;<a href='javascript:peuplerTas(2, "9♠ ");'>9♠ </a>
-&nbsp;<a href='javascript:peuplerTas(2, "A♠ ");'>A♠ </a>
-&nbsp;<a href='javascript:peuplerTas(2, "10♠ ");'>10♠ </a>
-&nbsp;<a href='javascript:peuplerTas(2, "R♠ ");'>R♠ </a>
-&nbsp;<a href='javascript:peuplerTas(2, "D♠ ");'>D♠ </a>
-&nbsp;<a href='javascript:peuplerTas(2, "8♠ ");'>8♠ </a>
-&nbsp;<a href='javascript:peuplerTas(2, "7♠ ");'>7♠ </a>
+&nbsp;<a href='javascript:peuplerTas(2, "9♠");'>9♠ </a>
+&nbsp;<a href='javascript:peuplerTas(2, "A♠");'>A♠ </a>
+&nbsp;<a href='javascript:peuplerTas(2, "10♠");'>10♠ </a>
+&nbsp;<a href='javascript:peuplerTas(2, "R♠");'>R♠ </a>
+&nbsp;<a href='javascript:peuplerTas(2, "D♠");'>D♠ </a>
+&nbsp;<a href='javascript:peuplerTas(2, "8♠");'>8♠ </a>
+&nbsp;<a href='javascript:peuplerTas(2, "7♠");'>7♠ </a>
 <br />
 <a href='javascript:peuplerTas(2, "V♥ ");'>V♥ </a>
-&nbsp;<a href='javascript:peuplerTas(2, "9♥ ");'>9♥ </a>
-&nbsp;<a href='javascript:peuplerTas(2, "A♥ ");'>A♥ </a>
-&nbsp;<a href='javascript:peuplerTas(2, "10♥ ");'>10♥ </a>
-&nbsp;<a href='javascript:peuplerTas(2, "R♥ ");'>R♥ </a>
-&nbsp;<a href='javascript:peuplerTas(2, "D♥ ");'>D♥ </a>
-&nbsp;<a href='javascript:peuplerTas(2, "8♥ ");'>8♥ </a>
-&nbsp;<a href='javascript:peuplerTas(2, "7♥ ");'>7♥ </a>
+&nbsp;<a href='javascript:peuplerTas(2, "9♥");'>9♥ </a>
+&nbsp;<a href='javascript:peuplerTas(2, "A♥");'>A♥ </a>
+&nbsp;<a href='javascript:peuplerTas(2, "10♥");'>10♥ </a>
+&nbsp;<a href='javascript:peuplerTas(2, "R♥");'>R♥ </a>
+&nbsp;<a href='javascript:peuplerTas(2, "D♥");'>D♥ </a>
+&nbsp;<a href='javascript:peuplerTas(2, "8♥");'>8♥ </a>
+&nbsp;<a href='javascript:peuplerTas(2, "7♥");'>7♥ </a>
 <br />
 <a href='javascript:peuplerTas(2, "V♦");'>V♥ </a>
 &nbsp;<a href='javascript:peuplerTas(2, "9♦");'>9♦</a>
@@ -103,13 +103,13 @@ Tas : <div id="equipe1cartes"></div>
 &nbsp;<a href='javascript:peuplerTas(2, "7♦");'>7♦</a>
 <br />
 <a href='javascript:peuplerTas(2, "V♣ ");'>V♥ </a>
-&nbsp;<a href='javascript:peuplerTas(2, "9♣ ");'>9♣ </a>
-&nbsp;<a href='javascript:peuplerTas(2, "A♣ ");'>A♣ </a>
-&nbsp;<a href='javascript:peuplerTas(2, "10♣ ");'>10♣ </a>
-&nbsp;<a href='javascript:peuplerTas(2, "R♣ ");'>R♣ </a>
-&nbsp;<a href='javascript:peuplerTas(2, "D♣ ");'>D♣ </a>
-&nbsp;<a href='javascript:peuplerTas(2, "8♣ ");'>8♣ </a>
-&nbsp;<a href='javascript:peuplerTas(2, "7♣ ");'>7♣ </a>
+&nbsp;<a href='javascript:peuplerTas(2, "9♣");'>9♣ </a>
+&nbsp;<a href='javascript:peuplerTas(2, "A♣");'>A♣ </a>
+&nbsp;<a href='javascript:peuplerTas(2, "10♣");'>10♣ </a>
+&nbsp;<a href='javascript:peuplerTas(2, "R♣");'>R♣ </a>
+&nbsp;<a href='javascript:peuplerTas(2, "D♣");'>D♣ </a>
+&nbsp;<a href='javascript:peuplerTas(2, "8♣");'>8♣ </a>
+&nbsp;<a href='javascript:peuplerTas(2, "7♣");'>7♣ </a>
 <br />
 
 Tas : <div id="equipe2cartes"></div>
@@ -130,7 +130,7 @@ function distribuer() {
 	const url="http://localhost/coinche/distribuer.php";
 	Http.open("POST", url, true);
 	Http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-	Http.setRequestHeader("Content-length", params.length);
+	//Http.setRequestHeader("Content-length", params.length);
 	Http.setRequestHeader("Connection", "close");
 	Http.onload = function () {
 		// do something to response
