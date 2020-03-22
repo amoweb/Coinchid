@@ -1,0 +1,19 @@
+{  
+	"sets": [  
+		1: { "name":"Main joueur 1", "reader": [1], "writer": [1]},
+		2: { "name":"Main joueur 2", "reader": [2], "writer": [2]},
+		3: { "name":"Main joueur 3", "reader": [3], "writer": [3]},
+		4: { "name":"Main joueur 4", "reader": [4], "writer": [4]},
+		5: { "name":"Table",    "reader": [1,2,3,4], "writer": [1,2,3,4] },
+		6: { "name":"Equipe 1", "reader": [],  "writer": [1,2,3,4]},
+		7: { "name":"Equipe 2", "reader": [],  "writer": [1,2,3,4]}
+	]  
+
+	"accounts": [
+		1: { "id": 1, "name": "Joueur 1" },
+		2: { "id": 2, "name": "Joueur 2" },
+		3: { "id": 3, "name": "Joueur 3" },
+		4: { "id": 4, "name": "Joueur 4" }
+	]
+}
+
