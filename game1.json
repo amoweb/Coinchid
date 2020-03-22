@@ -1,46 +1,55 @@
 {  
-	"sets": [  
-		1: { "name":"Main joueur 1", "reader": [1], "writer": [1]},
-		2: { "name":"Main joueur 2", "reader": [2], "writer": [2]},
-		3: { "name":"Main joueur 3", "reader": [3], "writer": [3]},
-		4: { "name":"Main joueur 4", "reader": [4], "writer": [4]},
-		5: { "name":"Table",    "reader": [1,2,3,4], "writer": [1,2,3,4] },
-		6: { "name":"Equipe 1", "reader": [],  "writer": [1,2,3,4]},
-		7: { "name":"Equipe 2", "reader": [],  "writer": [1,2,3,4]}
-	]  
+	"sets": [
+		{"id":1, "name":"Main joueur 1", "reader": [1], "writer": [1], "contents": [1, 2, 3]},
+		{"id":2, "name":"Main joueur 2", "reader": [2], "writer": [2], "contents": [4, 5, 6]},
+		{"id":3, "name":"Main joueur 3", "reader": [3], "writer": [3], "contents": [7, 8, 9]},
+		{"id":4, "name":"Main joueur 4", "reader": [4], "writer": [4], "contents": [10, 11, 12]},
+		{"id":5, "name":"Table",    "reader": [1,2,3,4], "writer": [1,2,3,4], "contents": [13, 14] },
+		{"id":6, "name":"Equipe 1", "reader": [],  "writer": [1,2,3,4], "contents": [15, 16]},
+		{"id":7, "name":"Equipe 2", "reader": [],  "writer": [1,2,3,4], "contents": [17, 18]},
+		{"id":8, "name":"Paquet", "reader": [],  "writer": [1,2,3,4], "contents": [19, 20]}
+	],
 
-	"accounts": [
-		1: { "id": 1, "name": "Joueur 1" },
-		2: { "id": 2, "name": "Joueur 2" },
-		3: { "id": 3, "name": "Joueur 3" },
-		4: { "id": 4, "name": "Joueur 4" }
-	]
+	"players": [
+		{ "id":1, "name": "Joueur 1" },
+		{ "id":2, "name": "Joueur 2" },
+		{ "id":3, "name": "Joueur 3" },
+		{ "id":4, "name": "Joueur 4" }
+	],
 
 	"items": [
-		1 : {"name":  "V♠"},
-		2 : {"name":  "9♠"},
-		3 : {"name":  "A♠"},
-		4 : {"name": "10♠"},
-		5 : {"name":  "R♠"},
-		6 : {"name":  "D♠"},
-		7 : {"name":  "8♠"},
-		8 : {"name":  "7♠"},
-		9 : {"name":  "V♥"},
-		10: {"name":  "9♥"},
-		11: {"name":  "A♥"},
-		12: {"name": "10♥"},
-		13: {"name":  "R♥"},
-		14: {"name":  "D♥"},
-		15: {"name":  "8♥"},
-		16: {"name":  "7♥"},
-		17 : {"name": "V♦"},
-		18: {"name":  "9♦"},
-		19: {"name":  "A♦"},
-		20: {"name": "10♦"},
-		21: {"name":  "R♦"},
-		22: {"name":  "D♦"},
-		23: {"name":  "8♦"},
-		24: {"name":  "7♦"}
+		{"id":1 , "name":  "V♠"},
+		{"id":2 , "name":  "9♠"},
+		{"id":3 , "name":  "A♠"},
+		{"id":4 , "name": "10♠"},
+		{"id":5 , "name":  "R♠"},
+		{"id":6 , "name":  "D♠"},
+		{"id":7 , "name":  "8♠"},
+		{"id":8 , "name":  "7♠"},
+		{"id":9 , "name":  "V♥"},
+		{"id":10, "name":  "9♥"},
+		{"id":11, "name":  "A♥"},
+		{"id":12, "name": "10♥"},
+		{"id":13, "name":  "R♥"},
+		{"id":14, "name":  "D♥"},
+		{"id":15, "name":  "8♥"},
+		{"id":16, "name":  "7♥"},
+		{"id":17, "name":  "V♦"},
+		{"id":18, "name":  "9♦"},
+		{"id":19, "name":  "A♦"},
+		{"id":20, "name": "10♦"},
+		{"id":21, "name":  "R♦"},
+		{"id":22, "name":  "D♦"},
+		{"id":23, "name":  "8♦"},
+		{"id":24, "name":  "7♦"},
+		{"id":25, "name":  "V♣"},
+		{"id":26, "name":  "9♣"},
+		{"id":27, "name":  "A♣"},
+		{"id":28, "name": "10♣"},
+		{"id":29, "name":  "R♣"},
+		{"id":30, "name":  "D♣"},
+		{"id":31, "name":  "8♣"},
+		{"id":32, "name":  "7♣"}
 	]
 }
 
