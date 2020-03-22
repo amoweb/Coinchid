@@ -3,14 +3,14 @@
 header("Access-Control-Allow-Origin: *");
 
 $playerId = -1;
-if(array_key_exists('player', $_GET) && $_GET['player']) {
+if(array_key_exists('player', $_GET) ) {
 	$playerId = intval($_GET['player']);
 } else {
 	return;
 }
 
 $game = -1;
-if(array_key_exists('game', $_GET) && $_GET['game']) {
+if(array_key_exists('game', $_GET) ) {
 	$game = intval($_GET['game']);
 } else {
 	return;
@@ -46,31 +46,68 @@ foreach ($json->items as $value) {
 $setsWritable = array();
 $setsWritableName = array();
 foreach ($json->sets as $value) {
-	foreach($value->writer as $id) {
-		if($id == $playerId) {
-			$setsWritable[] = $value->id;
-			$setsWritableName[] = $value->name;
-		}
+	if(in_array($playerId, $value->writer)) {
+		$setsWritable[] = $value->id;
+		$setsWritableName[] = $value->name;
 	}
 }
 
 // Display all sets this player can read
 foreach ($json->sets as $value) {
+	
+	$currentSetId = $value->id;
+
 	foreach($value->reader as $id) {
 		if($id == $playerId) {
-			echo "<h2>" . $value->name . "<h2>\n";
+			
+			// Display flush-all-set link
+			$flushDstLink = '';
+
+			foreach($setsWritable as $key => $dstSetId) {
+				if($dstSetId == $currentSetId) {
+					continue;
+				}
+
+				// Display only some links
+				if(!in_array($dstSetId, $value->displayedFlushDest)) {
+					continue;
+				}
+
+
+				$dstSetName = $setsWritableName[$key];
+				$flushDstLink .= '<a href="javascript:moveAll(' . $currentSetId . ',' . $dstSetId . ');">' . $dstSetName . '</a>&nbsp;';
+			}
+
+			if(strlen($flushDstLink) > 0) {
+				$flushDstLink = '&nbsp;&rarr;' . $flushDstLink;
+			}
+
+
+			echo "<h2>" . $value->name . $flushDstLink . "<h2>\n";
 			echo "<ul>";
 			
 			foreach($value->contents as $itemId) {
-				$dstLink = '&nbsp;&rarr;';
+
+				// Display move links
+				$dstLink = '';
 				foreach($setsWritable as $key => $dstSetId) {
-					if($dstSetId == $value->id) {
+					if($dstSetId == $currentSetId) {
 						continue;
 					}
+
+					// Display only some links
+					if(!in_array($dstSetId, $value->displayedMoveDest)) {
+						continue;
+					}
+
+
 					$dstSetName = $setsWritableName[$key];
-					$dstLink .= '<a href="javascript:move(' . $itemId . ',' . $value->id . ',' . $dstSetId . ');">' . $dstSetName . '</a>&nbsp;';
+					$dstLink .= '<a href="javascript:move(' . $itemId . ',' . $currentSetId . ',' . $dstSetId . ');">' . $dstSetName . '</a>&nbsp;';
 				}
 
+				if(strlen($dstLink) > 0) {
+					$dstLink = '&nbsp;&rarr;' . $dstLink;
+				}
 
 				echo "<li>" . $itemName[intval($itemId)] . $dstLink . "</li>\n";
 			}

@@ -38,13 +38,6 @@ html, body, .container {
 <script type="text/javascript">
 
 <?php
-$playerId = -1;
-if(array_key_exists('player', $_GET) && $_GET['player']) {
-	$playerId = intval($_GET['player']);
-} else {
-	return;
-}
-
 $game = -1;
 if(array_key_exists('game', $_GET) && $_GET['game']) {
 	$game = intval($_GET['game']);
@@ -52,7 +45,7 @@ if(array_key_exists('game', $_GET) && $_GET['game']) {
 	return;
 }
 
-echo 'var playerId = ' . $playerId . ';';
+echo 'var playerId = 0;';
 echo 'var gameId = ' . $game . ';';
 ?>
 
