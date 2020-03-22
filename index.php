@@ -31,79 +31,23 @@ html, body, .container {
 	</div>
 </nav>
 
-<div id="display"></div>
-
-</body>
-
-<script type="text/javascript">
-
 <?php
-$playerId = -1;
-if(array_key_exists('player', $_GET) && $_GET['player']) {
-	$playerId = intval($_GET['player']);
-} else {
-	return;
-}
-
-$game = -1;
+$game = 1;
 if(array_key_exists('game', $_GET) && $_GET['game']) {
 	$game = intval($_GET['game']);
-} else {
-	return;
 }
-
-echo 'var playerId = ' . $playerId . ';';
-echo 'var gameId = ' . $game . ';';
 ?>
 
-function update() {
-	const Http = new XMLHttpRequest();
-	const url='http://localhost/coinche/reader.php?game=' + gameId + '&player=' + playerId;
-	Http.open("GET", url);
-	Http.onreadystatechange = (e) => {
-		if(Http.responseText.length == 0) {
-			return;
-		}
-		if(document.getElementById("display").innerHTML.localeCompare(Http.responseText) != 0) {
-			document.getElementById("display").innerHTML = Http.responseText;
-		}
-	}
-	Http.send();
-}
+<h1>Liens</h1>
 
-function move(item, src, dst) {
-	var params = "src=" + src + "&dst=" + dst + "&item=" + item;
+<ul>
+<li><a href="https://amoweb.fr/coinche/joueur.php?game=<?php echo $game; ?>&player=1">Joueur 1</a>
+	<li><a href="https://amoweb.fr/coinche/joueur.php?game=<?php echo $game; ?>&player=2">Joueur 2</a></li>
+	<li><a href="https://amoweb.fr/coinche/joueur.php?game=<?php echo $game; ?>&player=3">Joueur 3</a></li>
+	<li><a href="https://amoweb.fr/coinche/joueur.php?game=<?php echo $game; ?>&player=4">Joueur 4</a></li>
+	<li><a href="https://amoweb.fr/coinche/game.php?game=<?php echo $game; ?>&player=1">Admin</a></li>
 
-	const Http = new XMLHttpRequest();
-	const url="http://localhost/coinche/move.php?game=" + gameId + "&player=" + playerId;
-	Http.open("POST", url, true);
-	Http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-	Http.setRequestHeader("Connection", "close");
-	Http.onload = function () {
-		// do something to response
-		console.log(this.responseText);
-	};
+</ul>
 
-	Http.send(params);
-}
-
-function moveAll(src, dst) {
-	var params = "src=" + src + "&dst=" + dst + "&all=1"
-
-	const Http = new XMLHttpRequest();
-	const url="http://localhost/coinche/move.php?game=" + gameId + "&player=" + playerId;
-	Http.open("POST", url, true);
-	Http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-	Http.setRequestHeader("Connection", "close");
-	Http.onload = function () {
-		// do something to response
-		console.log(this.responseText);
-	};
-
-	Http.send(params);
-}
-setInterval ( 'update()', 1000 );
-
-</script>
-
+</body>
 </html>

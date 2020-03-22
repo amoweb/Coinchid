@@ -9,18 +9,8 @@ if(array_key_exists('game', $_GET)) {
 	return;
 }
 
-$src = -1;
-if(array_key_exists('src', $_GET)) {
-	$src = intval($_GET['src']);
-} else {
-	return;
-}
-
-$dstList = [];
-if(array_key_exists('dst', $_GET)) {
-	$dst = explode('-', $_GET['dst']);
-} else {
-	return;
+if($game > 1000 || $game < 0) {
+	$game = 1;
 }
 
 // Read file
@@ -30,6 +20,26 @@ $jsontxt = file_get_contents($fileName);
 $json = json_decode($jsontxt);
 
 echo "<h1>Distribuer</h1>";
+
+// Source set
+$src = intval($json->distributeSource); // Paquet
+
+// Compute distribution order
+$dst = array();
+$indexPlayer = $json->firstPlayer;
+for($i = 0; $i < 4; ++$i) {
+	$indexPlayer = $indexPlayer + 1;
+	if($indexPlayer > 4) {
+		$indexPlayer = 1;
+	}
+	$dst[] = $indexPlayer;
+}
+
+// Change first player
+$json->firstPlayer += 1;
+if($json->firstPlayer > 4) {
+	$json->firstPlayer = 1;
+}
 
 // Read item list
 $nbItems = count($json->items);

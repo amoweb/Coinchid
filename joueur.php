@@ -25,7 +25,7 @@ html, body, .container {
 	<div class="collapse navbar-collapse" id="navbarsExample02">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item">
-				<a class="nav-link" href="javascript:distribuer();" >Distribuer</a>
+				<a class="nav-link" href="" >...</a>
 			</li>
 		</ul>
 	</div>
@@ -38,6 +38,13 @@ html, body, .container {
 <script type="text/javascript">
 
 <?php
+$playerId = -1;
+if(array_key_exists('player', $_GET) && $_GET['player']) {
+	$playerId = intval($_GET['player']);
+} else {
+	return;
+}
+
 $game = -1;
 if(array_key_exists('game', $_GET) && $_GET['game']) {
 	$game = intval($_GET['game']);
@@ -45,7 +52,7 @@ if(array_key_exists('game', $_GET) && $_GET['game']) {
 	return;
 }
 
-echo 'var playerId = 0;';
+echo 'var playerId = ' . $playerId . ';';
 echo 'var gameId = ' . $game . ';';
 ?>
 
@@ -96,22 +103,6 @@ function moveAll(src, dst) {
 	Http.send(params);
 }
 setInterval ( 'update()', 1000 );
-
-function distribuer() {
-	const Http = new XMLHttpRequest();
-	const url='https://amoweb.fr/coinche/distribuer.php?game=' + gameId;
-	Http.open("GET", url);
-	Http.onreadystatechange = (e) => {
-		if(Http.responseText.length == 0) {
-			return;
-		}
-		if(document.getElementById("display").innerHTML.localeCompare(Http.responseText) != 0) {
-			document.getElementById("display").innerHTML = Http.responseText;
-		}
-	}
-	Http.send();
-
-}
 
 </script>
 

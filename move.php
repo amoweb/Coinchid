@@ -16,6 +16,10 @@ if(array_key_exists('game', $_GET)) {
 	return;
 }
 
+if($game > 1000 || $game < 0) {
+	$game = 1;
+}
+
 $src = -1;
 if(array_key_exists('src', $_POST)) {
 	$src = intval($_POST['src']);

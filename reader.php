@@ -86,7 +86,12 @@ foreach ($json->sets as $value) {
 			echo "<h2>" . $value->name . $flushDstLink . "<h2>\n";
 			echo "<ul>";
 			
-			foreach($value->contents as $itemId) {
+			$sortedContents = $value->contents;
+
+			if(intval($value->sortedDisplay) != 0) {
+				sort($value->contents);
+			}
+			foreach($sortedContents as $itemId) {
 
 				// Display move links
 				$dstLink = '';
@@ -116,5 +121,24 @@ foreach ($json->sets as $value) {
 		}
 	}
 }
+
+echo '<h2>Ordre du tour</h2><p>';
+
+$indexPlayer = $json->firstPlayer;
+for($i = 0; $i < 4; ++$i) {
+	$indexPlayer = $indexPlayer + 1;
+	if($indexPlayer > 4) {
+		$indexPlayer = 1;
+	}
+
+	echo $json->players[$indexPlayer]->name;
+
+	if($i < 3) {
+		echo '&nbsp;&rarr;&nbsp;';
+	}
+}
+
+
+echo '</p>';
 
 ?>
