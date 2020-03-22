@@ -69,26 +69,69 @@ if($nbItems != 32) {
 	die('Only works with 32 cards.');
 }
 
-$cartesCoupees
+$i = 0;
+$p1 = [];
+$p2 = [];
+$p3 = [];
+$p4 = [];
 
-// // Write in the destination set
-// foreach ($json->sets as $value) {
-// 
-// 	if($dst != intval($value->id)) {
-// 		continue;
-// 	}
-// 
-// 	// Check if player can write in this set
-// 	if(!in_array($playerId, $value->writer)) {
-// 		die("Not the right to write to this set.");
-// 	}
-// 
-// 	$value->contents = array_merge($value->contents, $items);
-// }
+$p1[] = $cartesCoupees[$i++];
+$p1[] = $cartesCoupees[$i++];
+$p1[] = $cartesCoupees[$i++];
+$p2[] = $cartesCoupees[$i++];
+$p2[] = $cartesCoupees[$i++];
+$p2[] = $cartesCoupees[$i++];
+$p3[] = $cartesCoupees[$i++];
+$p3[] = $cartesCoupees[$i++];
+$p3[] = $cartesCoupees[$i++];
+$p4[] = $cartesCoupees[$i++];
+$p4[] = $cartesCoupees[$i++];
+$p4[] = $cartesCoupees[$i++];
+
+$p1[] = $cartesCoupees[$i++];
+$p1[] = $cartesCoupees[$i++];
+$p2[] = $cartesCoupees[$i++];
+$p2[] = $cartesCoupees[$i++];
+$p3[] = $cartesCoupees[$i++];
+$p3[] = $cartesCoupees[$i++];
+$p4[] = $cartesCoupees[$i++];
+$p4[] = $cartesCoupees[$i++];
+
+$p1[] = $cartesCoupees[$i++];
+$p1[] = $cartesCoupees[$i++];
+$p1[] = $cartesCoupees[$i++];
+$p2[] = $cartesCoupees[$i++];
+$p2[] = $cartesCoupees[$i++];
+$p2[] = $cartesCoupees[$i++];
+$p3[] = $cartesCoupees[$i++];
+$p3[] = $cartesCoupees[$i++];
+$p3[] = $cartesCoupees[$i++];
+$p4[] = $cartesCoupees[$i++];
+$p4[] = $cartesCoupees[$i++];
+$p4[] = $cartesCoupees[$i++];
+
+// Write in the destination set
+foreach ($json->sets as $value) {
+	switch(intval($value->id)) {
+		case $dst[0]:
+			$value->contents = $p1;
+			break;
+		case $dst[1]:
+			$value->contents = $p2;
+			break;
+		case $dst[2]:
+			$value->contents = $p3;
+			break;
+		case $dst[3]:
+			$value->contents = $p4;
+			break;
+
+	}
+}
 
 $jsontxt = json_encode($json);
 
-file_put_contents ('2' . $fileName, $jsontxt );
+file_put_contents ( $fileName, $jsontxt );
 
 ?>
 
