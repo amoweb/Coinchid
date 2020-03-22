@@ -25,7 +25,7 @@ html, body, .container {
 	<div class="collapse navbar-collapse" id="navbarsExample02">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item">
-				<a class="nav-link" href="javascript:distribuer();" >Distribuer</a>
+				<a class="nav-link" href="" >...</a>
 			</li>
 		</ul>
 	</div>
@@ -37,15 +37,57 @@ html, body, .container {
 
 <script type="text/javascript">
 
+<?php
+$playerId = -1;
+if(array_key_exists('player', $_GET) && $_GET['player']) {
+	$playerId = intval($_GET['player']);
+} else {
+	return;
+}
+
+$game = -1;
+if(array_key_exists('game', $_GET) && $_GET['game']) {
+	$game = intval($_GET['game']);
+} else {
+	return;
+}
+
+echo 'var playerId = ' . $playerId . ';';
+echo 'var gameId = ' . $game . ';';
+?>
+
 function update() {
 	const Http = new XMLHttpRequest();
-	const url='http://localhost/coinche/reader.php?game=1&player=' + noteName;
+	const url='http://localhost/coinche/reader.php?game=' + gameId + '&player=' + playerId;
 	Http.open("GET", url);
 	Http.onreadystatechange = (e) => {
-		document.getElementById("display").innerHTML = Http.responseText;
+		if(Http.responseText.length == 0) {
+			return;
+		}
+		if(document.getElementById("display").innerHTML.localeCompare(Http.responseText) != 0) {
+			document.getElementById("display").innerHTML = Http.responseText;
+		}
 	}
 	Http.send();
 }
+
+function move(item, src, dst) {
+	var params = "src=" + src + "&dst=" + dst + "&item=" + item;
+
+	const Http = new XMLHttpRequest();
+	const url="http://localhost/coinche/move.php?game=" + gameId + "&player=" + playerId;
+	Http.open("POST", url, true);
+	Http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+	Http.setRequestHeader("Connection", "close");
+	Http.onload = function () {
+		// do something to response
+		console.log(this.responseText);
+	};
+
+	Http.send(params);
+}
+
+setInterval ( 'update()', 1000 );
 
 </script>
 
