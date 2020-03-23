@@ -38,8 +38,14 @@ echo "<h1>" . $currPlayer->name . "</h1>";
 
 // Read item list
 $itemName = array();
+$itemValAtout = array();
+$itemNonValAtout = array();
+$itemColor = array();
 foreach ($json->items as $value) {
 	$itemName[intval($value->id)] = $value->name;
+	$itemValAtout[intval($value->id)] = intval($value->valAtout);
+	$itemValNonAtout[intval($value->id)] = intval($value->valNonAtout);
+	$itemColor[intval($value->id)] = intval($value->color);
 }
 
 // List all sets this player can write
@@ -82,7 +88,7 @@ foreach ($json->sets as $value) {
 			}
 
             echo "<h2>" . $value->name . $flushDstLink . "<h2>\n";
-			echo "<ul>";
+			//echo "<ul>";
 			
 			$sortedContents = $value->contents;
 
@@ -117,17 +123,62 @@ foreach ($json->sets as $value) {
 				}
 
                 if(count($value->defaultMoveDest) == 0) {
-                    echo "<li>" . $itemName[intval($itemId)] . $dstLink . "</li>\n";
+                    echo $itemName[intval($itemId)] . $dstLink . "\n";
                 } else if(count($value->defaultMoveDest) == 1) {
-                    echo '<li><a href="javascript:move(' . $itemId . ',' . $currentSetId . ',' . $dstSetId . ');">' . $itemName[intval($itemId)] . $dstLink . '</a></li>';
+                    echo '<a href="javascript:move(' . $itemId . ',' . $currentSetId . ',' . $value->defaultMoveDest[0] . ');">' . $itemName[intval($itemId)] . $dstLink . '</a>';
                 } else {
                     die('defaultMoveDest can contain 0 or 1 element.');
                 }
 			}
 
-			echo "</ul>";
+			//echo "</ul>";
 		}
 	}
+}
+
+if($playerId == 0) {
+    echo '<h2>Compatage</h2>';
+
+    // Display all sets this player can read
+    foreach ($json->sets as $value) {
+        $currentSetId = intval($value->id);
+
+        if($currentSetId != 6 && $currentSetId != 7) {
+            continue;
+        }
+
+        echo $value->name;
+
+        echo '<ul><li>Tout atout: ';
+        $sum = 0;
+        foreach($value->contents as $itemId) {
+            $sum += intval($itemValAtout[$itemId]);
+        }
+        echo $sum . '</li>';
+
+        echo '<li>Sans atout: ';
+        $sum = 0;
+        foreach($value->contents as $itemId) {
+            $sum += intval($itemValNonAtout[$itemId]);
+        }
+        echo $sum . '</li>';
+
+        $colorName = array('', 'pique', 'coeur', 'trefle', 'carreau');
+        for($color = 1; $color <= 4; $color++) {
+            echo '<li>Atout ' . $colorName[$color] . ' : ';
+            $sum = 0;
+            foreach($value->contents as $itemId) {
+                if($itemColor[$itemId] == $color) {
+                    $sum += $itemValAtout[$itemId];
+                } else {
+                    $sum += $itemValNonAtout[$itemId];
+                }
+            }
+            echo $sum . '</li>';
+        }
+
+        echo '</ul>';
+    }
 }
 
 echo '<h2>Ordre du tour</h2><p>';

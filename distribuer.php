@@ -139,6 +139,15 @@ foreach ($json->sets as $value) {
 	}
 }
 
+// Find first player player name
+$player = NULL;
+foreach ($json->players as $value) {
+	if(intval($value->id) == intval($json->firstPlayer)) {
+		$player = $value;
+	}
+}
+$json->status = 'Nouvelle partie: ' . $player->name . ' annoncez!';
+
 $jsontxt = json_encode($json);
 
 file_put_contents ( $fileName, $jsontxt );
