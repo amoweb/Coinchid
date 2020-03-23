@@ -71,7 +71,6 @@ if($currPlayer == NULL) {
 
 echo "<h1>" . $currPlayer->name . "</h1>";
 
-
 // Check whether user can write
 
 if($moveAll) {
@@ -108,6 +107,8 @@ if($moveAll) {
 
 		$value->contents = array_merge($value->contents, $items);
 	}
+
+    $json->status = $currPlayer->name . ' vient de bouger un packet.';
 	
 } else {
 	// Remove from source set
@@ -152,6 +153,8 @@ if($moveAll) {
 
 		$value->contents[] = intval($item);
 	}
+
+    $json->status = $currPlayer->name . ' vient de jouer.';
 }
 
 $jsontxt = json_encode($json);

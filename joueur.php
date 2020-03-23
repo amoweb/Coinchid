@@ -1,3 +1,4 @@
+<?php include 'config.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +26,6 @@ html, body, .container {
 	<div class="collapse navbar-collapse" id="navbarsExample02">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item">
-				<a class="nav-link" href="" >...</a>
 			</li>
 		</ul>
 	</div>
@@ -58,7 +58,7 @@ echo 'var gameId = ' . $game . ';';
 
 function update() {
 	const Http = new XMLHttpRequest();
-	const url='https://amoweb.fr/coinche/reader.php?game=' + gameId + '&player=' + playerId;
+    const url='<?php echo $URL_BASIS; ?>reader.php?game=' + gameId + '&player=' + playerId;
 	Http.open("GET", url);
 	Http.onreadystatechange = (e) => {
 		if(Http.responseText.length == 0) {
@@ -75,7 +75,7 @@ function move(item, src, dst) {
 	var params = "src=" + src + "&dst=" + dst + "&item=" + item;
 
 	const Http = new XMLHttpRequest();
-	const url="https://amoweb.fr/coinche/move.php?game=" + gameId + "&player=" + playerId;
+    const url="<?php echo $URL_BASIS; ?>move.php?game=" + gameId + "&player=" + playerId;
 	Http.open("POST", url, true);
 	Http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	Http.setRequestHeader("Connection", "close");
@@ -91,7 +91,7 @@ function moveAll(src, dst) {
 	var params = "src=" + src + "&dst=" + dst + "&all=1"
 
 	const Http = new XMLHttpRequest();
-	const url="https://amoweb.fr/coinche/move.php?game=" + gameId + "&player=" + playerId;
+    const url="<?php echo $URL_BASIS; ?>move.php?game=" + gameId + "&player=" + playerId;
 	Http.open("POST", url, true);
 	Http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	Http.setRequestHeader("Connection", "close");

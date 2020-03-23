@@ -73,7 +73,6 @@ foreach ($json->sets as $value) {
 					continue;
 				}
 
-
 				$dstSetName = $setsWritableName[$key];
 				$flushDstLink .= '<a href="javascript:moveAll(' . $currentSetId . ',' . $dstSetId . ');">' . $dstSetName . '</a>&nbsp;';
 			}
@@ -82,8 +81,7 @@ foreach ($json->sets as $value) {
 				$flushDstLink = '&nbsp;&rarr;' . $flushDstLink;
 			}
 
-
-			echo "<h2>" . $value->name . $flushDstLink . "<h2>\n";
+            echo "<h2>" . $value->name . $flushDstLink . "<h2>\n";
 			echo "<ul>";
 			
 			$sortedContents = $value->contents;
@@ -105,6 +103,10 @@ foreach ($json->sets as $value) {
 						continue;
 					}
 
+                    // The default link is not displayed here
+                    if(in_array($dstSetId, $value->defaultMoveDest)) {
+                        continue;
+                    }
 
 					$dstSetName = $setsWritableName[$key];
 					$dstLink .= '<a href="javascript:move(' . $itemId . ',' . $currentSetId . ',' . $dstSetId . ');">' . $dstSetName . '</a>&nbsp;';
@@ -114,7 +116,13 @@ foreach ($json->sets as $value) {
 					$dstLink = '&nbsp;&rarr;' . $dstLink;
 				}
 
-				echo "<li>" . $itemName[intval($itemId)] . $dstLink . "</li>\n";
+                if(count($value->defaultMoveDest) == 0) {
+                    echo "<li>" . $itemName[intval($itemId)] . $dstLink . "</li>\n";
+                } else if(count($value->defaultMoveDest) == 1) {
+                    echo '<li><a href="javascript:move(' . $itemId . ',' . $currentSetId . ',' . $dstSetId . ');">' . $itemName[intval($itemId)] . $dstLink . '</a></li>';
+                } else {
+                    die('defaultMoveDest can contain 0 or 1 element.');
+                }
 			}
 
 			echo "</ul>";
@@ -138,6 +146,7 @@ for($i = 0; $i < 4; ++$i) {
 	}
 }
 
+echo '<p><b>' . $json->status . '</b></p>';
 
 echo '</p>';
 

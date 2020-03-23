@@ -1,3 +1,4 @@
+<?php include 'config.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,11 +42,11 @@ if(array_key_exists('game', $_GET) && $_GET['game']) {
 <h1>Liens</h1>
 
 <ul>
-<li><a href="https://amoweb.fr/coinche/joueur.php?game=<?php echo $game; ?>&player=1">Joueur 1</a>
-	<li><a href="https://amoweb.fr/coinche/joueur.php?game=<?php echo $game; ?>&player=2">Joueur 2</a></li>
-	<li><a href="https://amoweb.fr/coinche/joueur.php?game=<?php echo $game; ?>&player=3">Joueur 3</a></li>
-	<li><a href="https://amoweb.fr/coinche/joueur.php?game=<?php echo $game; ?>&player=4">Joueur 4</a></li>
-	<li><a href="https://amoweb.fr/coinche/game.php?game=<?php echo $game; ?>&player=1">Admin</a></li>
+<li><a href="<?php echo $URL_BASIS; ?>joueur.php?game=<?php echo $game; ?>&player=1">Joueur 1</a>
+    <li><a href="<?php echo $URL_BASIS; ?>joueur.php?game=<?php echo $game; ?>&player=2">Joueur 2</a></li>
+    <li><a href="<?php echo $URL_BASIS; ?>joueur.php?game=<?php echo $game; ?>&player=3">Joueur 3</a></li>
+    <li><a href="<?php echo $URL_BASIS; ?>joueur.php?game=<?php echo $game; ?>&player=4">Joueur 4</a></li>
+    <li><a href="<?php echo $URL_BASIS; ?>game.php?game=<?php echo $game; ?>&player=1">Admin</a></li>
 
 </ul>
 
