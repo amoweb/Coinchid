@@ -157,6 +157,8 @@ if($moveAll) {
     $json->status = $currPlayer->name . ' vient de jouer.';
 }
 
+$json->lastMoveDestination = $dst;
+
 $jsontxt = json_encode($json);
 
 file_put_contents ($fileName, $jsontxt );

@@ -58,6 +58,8 @@ foreach ($json->sets as $value) {
 	}
 }
 
+echo '<p><b>' . $json->status . '</b></p>';
+
 // Display all sets this player can read
 foreach ($json->sets as $value) {
 	
@@ -65,6 +67,8 @@ foreach ($json->sets as $value) {
 
 	foreach($value->reader as $id) {
 		if($id == $playerId) {
+
+            echo '<div style="set">';
 			
 			// Display flush-all-set link
 			$flushDstLink = '';
@@ -93,10 +97,10 @@ foreach ($json->sets as $value) {
 			$sortedContents = $value->contents;
 
 			if(intval($value->sortedDisplay) != 0) {
-				sort($value->contents);
+				sort($sortedContents);
 			}
-			foreach($sortedContents as $itemId) {
 
+			foreach($sortedContents as $itemId) {
 				// Display move links
 				$dstLink = '';
 				foreach($setsWritable as $key => $dstSetId) {
@@ -127,17 +131,24 @@ foreach ($json->sets as $value) {
                 } else if(count($value->defaultMoveDest) == 1) {
                     echo '<a href="javascript:move(' . $itemId . ',' . $currentSetId . ',' . $value->defaultMoveDest[0] . ');">' . $itemName[intval($itemId)] . $dstLink . '</a>';
                 } else {
-                    die('defaultMoveDest can contain 0 or 1 element.');
+                    foreach($value->defaultMoveDest as $d) {
+                        if(in_array($playerId, $setsWritable)) {
+                            echo '<a href="javascript:move(' . $itemId . ',' . $currentSetId . ',' . $d . ');">' . $itemName[intval($itemId)] . $dstLink . '</a>';
+                            break;
+                        }
+                    }
+                    
                 }
 			}
 
-			//echo "</ul>";
+			echo "<br />";
+            echo '<div>'; // reader
 		}
 	}
 }
 
 if($playerId == 0) {
-    echo '<h2>Compatage</h2>';
+    echo '<h2>Comptage</h2>';
 
     // Display all sets this player can read
     foreach ($json->sets as $value) {
@@ -196,8 +207,6 @@ for($i = 0; $i < 4; ++$i) {
 		echo '&nbsp;&rarr;&nbsp;';
 	}
 }
-
-echo '<p><b>' . $json->status . '</b></p>';
 
 echo '</p>';
 
