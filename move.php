@@ -1,5 +1,7 @@
 <?php
 
+include 'co.lib.php';
+
 header("Access-Control-Allow-Origin: *");
 
 $playerId = -1;
@@ -9,15 +11,11 @@ if(array_key_exists('player', $_GET)) {
 	return;
 }
 
-$game = -1;
-if(array_key_exists('game', $_GET)) {
-	$game = intval($_GET['game']);
+$game = null;
+if(array_key_exists('game', $_GET) && $_GET['game']) {
+	$game = sanitizeGameId($_GET['game']);
 } else {
 	return;
-}
-
-if($game > 1000 || $game < 0) {
-	$game = 1;
 }
 
 $src = -1;

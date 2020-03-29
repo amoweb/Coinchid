@@ -1,4 +1,4 @@
-<?php include 'config.php'; ?>
+<?php include 'co.lib.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,15 +46,15 @@ if(array_key_exists('player', $_GET) && $_GET['player']) {
 	return;
 }
 
-$game = -1;
+$game = null;
 if(array_key_exists('game', $_GET) && $_GET['game']) {
-	$game = intval($_GET['game']);
+	$game = sanitizeGameId($_GET['game']);
 } else {
 	return;
 }
 
 echo 'var playerId = ' . $playerId . ';';
-echo 'var gameId = ' . $game . ';';
+echo 'var gameId = "' . $game . '";';
 ?>
 
 function update() {

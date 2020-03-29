@@ -20,4 +20,10 @@ function writeJson($fileName, $json) {
     file_put_contents ( $fileName, $jsontxt );
 }
 
+function sanitizeGameId($name) {
+    return preg_replace("/[^a-zA-Z0-9]+/", "", $name);
+}
+
+
+
 ?>

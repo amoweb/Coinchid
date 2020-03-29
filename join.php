@@ -32,25 +32,37 @@ html, body, .container {
 	</div>
 </nav>
 
+<?php
+$game = null;
+if(array_key_exists('game', $_GET) && $_GET['game']) {
+	$game = sanitizeGameId($_GET['game']);
+}
+
+$game = null;
+if(array_key_exists('game', $_GET) && $_GET['game']) {
+	$game = sanitizeGameId($_GET['game']);
+}
+?>
+
 <h1>Coinche</h1>
 
-<h2>Créer une nouvelle partie</h2>
+<h2>Sélectionnez votre nom</h2>
 
-<form action="create.php" method="post">
-Nom 1 : <input type="text" id="name1" name="name1" size="10" value="Joueur 1"><br />
-Nom 2 : <input type="text" id="name2" name="name2" size="10" value="Joueur 2"><br />
-Nom 3 : <input type="text" id="name3" name="name3" size="10" value="Joueur 3"><br />
-Nom 4 : <input type="text" id="name4" name="name4" size="10" value="Joueur 4"><br />
-<input type="submit" value="Créer la partie">
-</form>
+<ul>
+<?php 
+    $fileName = "game" . $game . ".json";
+    $json = readJson($fileName);
 
-<br />
-<h2>Rejoindre une partie existante</h2>
+    echo '<li><a href="' . $URL_BASIS . 'game.php?game=' . $game . '&player=0">Gestion du jeu</a>';
 
-<form action="join.php" method="get">
-Id : <input type="text" name="game" id="game" size="10"> <input type="submit" value="Rejoindre">
-</form>
-<br />
+    for($i = 1; $i <= 4; $i++) {
+        $p = getJsonElementById($json->players, $i);
+        echo '<li><a href="' . $URL_BASIS . 'player.php?game=' . $game . '&player=' . $i . '">';
+        echo $p->name;
+        echo '</a></li>';
+    }
+?>
+</ul>
 
 </body>
 </html>

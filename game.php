@@ -1,4 +1,4 @@
-<?php include 'config.php'; ?>
+<?php include 'co.lib.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,8 +26,8 @@ html, body, .container {
 
 	<div class="collapse navbar-collapse" id="navbarsExample02">
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-item">
-				<a class="nav-link" href="javascript:distribuer();" >Distribuer</a>
+			<li class="nav-item active">
+				<a class="nav-link " href="javascript:distribuer();" >Distribuer</a>
 			</li>
 		</ul>
 	</div>
@@ -40,15 +40,15 @@ html, body, .container {
 <script type="text/javascript">
 
 <?php
-$game = -1;
+$game = null;
 if(array_key_exists('game', $_GET) && $_GET['game']) {
-	$game = intval($_GET['game']);
+	$game = sanitizeGameId($_GET['game']);
 } else {
 	return;
 }
 
 echo 'var playerId = 0;';
-echo 'var gameId = ' . $game . ';';
+echo 'var gameId = "' . $game . '";';
 ?>
 
 function update() {
