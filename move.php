@@ -100,6 +100,8 @@ if($moveAll) {
 			continue;
 		}
 
+        $value->owner = 0;
+
 		// Check if player can write in this set
 		if(!in_array($playerId, $value->writer)) {
 			die("Not the right to write to this set.");
@@ -138,6 +140,14 @@ if($moveAll) {
 
 		array_splice($value->contents, $itemIndex, 1);
 	}
+
+    // Change owner
+    foreach($json->items as $card) {
+        if(intval($card->id) == $item) {
+            $card->owner = $playerId;
+            break;
+        }
+    }
 
 	// Write in the destination set
 	foreach ($json->sets as $value) {

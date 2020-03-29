@@ -1,4 +1,5 @@
 <?php
+include 'co.lib.php';
 
 header("Access-Control-Allow-Origin: *");
 
@@ -18,35 +19,16 @@ if(array_key_exists('game', $_GET) ) {
 
 // Read file
 $fileName = "game" . $game . ".json";
-$jsontxt = file_get_contents($fileName);
-
-$json = json_decode($jsontxt);
+$json = readJson($fileName);
 
 // Find current player
-$currPlayer = NULL;
-foreach ($json->players as $value) {
-	if(intval($value->id) == $playerId) {
-		$currPlayer = $value;
-	}
-}
+$currPlayer = getJsonElementById($json->players, $playerId);
 
 if($currPlayer == NULL) {
 	die("Player not found.");
 }
 
 echo "<h1>" . $currPlayer->name . "</h1>";
-
-// Read item list
-$itemName = array();
-$itemValAtout = array();
-$itemNonValAtout = array();
-$itemColor = array();
-foreach ($json->items as $value) {
-	$itemName[intval($value->id)] = $value->name;
-	$itemValAtout[intval($value->id)] = intval($value->valAtout);
-	$itemValNonAtout[intval($value->id)] = intval($value->valNonAtout);
-	$itemColor[intval($value->id)] = intval($value->color);
-}
 
 // List all sets this player can write
 $setsWritable = array();
@@ -68,8 +50,6 @@ foreach ($json->sets as $value) {
 	foreach($value->reader as $id) {
 		if($id == $playerId) {
 
-            echo '<div style="set">';
-			
 			// Display flush-all-set link
 			$flushDstLink = '';
 
@@ -126,14 +106,17 @@ foreach ($json->sets as $value) {
 					$dstLink = '&nbsp;&rarr;' . $dstLink;
 				}
 
+                $card = getJsonElementById($json->items, $itemId);
+                $cardHTML = cardStr($json, $card);
+
                 if(count($value->defaultMoveDest) == 0) {
-                    echo $itemName[intval($itemId)] . $dstLink . "\n";
+                    echo $cardHTML . "\n";
                 } else if(count($value->defaultMoveDest) == 1) {
-                    echo '<a href="javascript:move(' . $itemId . ',' . $currentSetId . ',' . $value->defaultMoveDest[0] . ');">' . $itemName[intval($itemId)] . $dstLink . '</a>';
+                    echo '<a href="javascript:move(' . $itemId . ',' . $currentSetId . ',' . $value->defaultMoveDest[0] . ');">' . $cardHTML . $dstLink . '</a>';
                 } else {
                     foreach($value->defaultMoveDest as $d) {
-                        if(in_array($playerId, $setsWritable)) {
-                            echo '<a href="javascript:move(' . $itemId . ',' . $currentSetId . ',' . $d . ');">' . $itemName[intval($itemId)] . $dstLink . '</a>';
+                        if(in_array($d, $setsWritable)) {
+                            echo '<a href="javascript:move(' . $itemId . ',' . $currentSetId . ',' . $d . ');">' . $cardHTML . $dstLink . '</a>';
                             break;
                         }
                     }
@@ -142,7 +125,6 @@ foreach ($json->sets as $value) {
 			}
 
 			echo "<br />";
-            echo '<div>'; // reader
 		}
 	}
 }
@@ -150,58 +132,28 @@ foreach ($json->sets as $value) {
 if($playerId == 0) {
     echo '<h2>Comptage</h2>';
 
-    // Display all sets this player can read
-    foreach ($json->sets as $value) {
-        $currentSetId = intval($value->id);
+    // Team 1 count
+    $team1set = getJsonElementById($json->sets, 6);
+    echo $team1set->name;
+    echo countStr($json, $team1set->contents);
 
-        if($currentSetId != 6 && $currentSetId != 7) {
-            continue;
-        }
+    // Team 2 count
+    $team2set = getJsonElementById($json->sets, 7);
+    echo $team2set->name;
+    echo countStr($json, $team2set->contents);
 
-        echo $value->name;
-
-        echo '<ul><li>Tout atout: ';
-        $sum = 0;
-        foreach($value->contents as $itemId) {
-            $sum += intval($itemValAtout[$itemId]);
-        }
-        echo $sum . '</li>';
-
-        echo '<li>Sans atout: ';
-        $sum = 0;
-        foreach($value->contents as $itemId) {
-            $sum += intval($itemValNonAtout[$itemId]);
-        }
-        echo $sum . '</li>';
-
-        $colorName = array('', 'pique', 'coeur', 'trefle', 'carreau');
-        for($color = 1; $color <= 4; $color++) {
-            echo '<li>Atout ' . $colorName[$color] . ' : ';
-            $sum = 0;
-            foreach($value->contents as $itemId) {
-                if($itemColor[$itemId] == $color) {
-                    $sum += $itemValAtout[$itemId];
-                } else {
-                    $sum += $itemValNonAtout[$itemId];
-                }
-            }
-            echo $sum . '</li>';
-        }
-
-        echo '</ul>';
-    }
 }
 
 echo '<h2>Ordre du tour</h2><p>';
 
 $indexPlayer = $json->firstPlayer;
 for($i = 0; $i < 4; ++$i) {
+    echo getJsonElementById($json->players, $indexPlayer)->name;
+
 	$indexPlayer = $indexPlayer + 1;
 	if($indexPlayer > 4) {
 		$indexPlayer = 1;
 	}
-
-	echo $json->players[$indexPlayer]->name;
 
 	if($i < 3) {
 		echo '&nbsp;&rarr;&nbsp;';

@@ -14,6 +14,19 @@
     overflow: auto;
 }
 
+.player {
+    color: grey;
+    font-size: 0.5em;
+}
+
+.cardsOwner {
+    font-size: 0.5em;
+    position:relative;
+    display: inline;
+    float: left;
+    overflow: auto;
+}
+
 h1 {
     font-size: 1.1em;
     clear:both;
@@ -26,8 +39,4 @@ h2 {
     float: left;
     clear:both;
     float:none;
-}
-
-set {
-    background-color: #ggggg;
 }

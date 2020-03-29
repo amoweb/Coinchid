@@ -59,7 +59,7 @@ echo 'var gameId = ' . $game . ';';
 
 function update() {
 	const Http = new XMLHttpRequest();
-    const url='<?php echo $URL_BASIS; ?>reader.php?game=' + gameId + '&player=' + playerId;
+    const url='<?php echo $URL_BASIS; ?>reader.php?nocache=' + (new Date()).getTime() + '&game=' + gameId + '&player=' + playerId;
 	Http.open("GET", url);
 	Http.onreadystatechange = (e) => {
 		if(Http.responseText.length == 0) {
@@ -76,7 +76,7 @@ function move(item, src, dst) {
 	var params = "src=" + src + "&dst=" + dst + "&item=" + item;
 
 	const Http = new XMLHttpRequest();
-    const url="<?php echo $URL_BASIS; ?>move.php?game=" + gameId + "&player=" + playerId;
+    const url="<?php echo $URL_BASIS; ?>move.php?nocache=" + (new Date()).getTime() + "&game=" + gameId + "&player=" + playerId;
 	Http.open("POST", url, true);
 	Http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	Http.setRequestHeader("Connection", "close");
@@ -86,13 +86,14 @@ function move(item, src, dst) {
 	};
 
 	Http.send(params);
+    update();
 }
 
 function moveAll(src, dst) {
 	var params = "src=" + src + "&dst=" + dst + "&all=1"
 
 	const Http = new XMLHttpRequest();
-    const url="<?php echo $URL_BASIS; ?>move.php?game=" + gameId + "&player=" + playerId;
+    const url="<?php echo $URL_BASIS; ?>move.php?nocache=" + (new Date()).getTime() + "&game=" + gameId + "&player=" + playerId;
 	Http.open("POST", url, true);
 	Http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	Http.setRequestHeader("Connection", "close");

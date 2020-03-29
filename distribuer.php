@@ -1,4 +1,5 @@
 <?php
+include 'co.lib.php';
 
 header("Access-Control-Allow-Origin: *");
 
@@ -15,9 +16,7 @@ if($game > 1000 || $game < 0) {
 
 // Read file
 $fileName = "game" . $game . ".json";
-$jsontxt = file_get_contents($fileName);
-
-$json = json_decode($jsontxt);
+$json = readJson($fileName);
 
 echo "<h1>Distribuer</h1>";
 
@@ -45,15 +44,16 @@ if($json->firstPlayer > 4) {
 $nbItems = count($json->items);
 
 // Move from source set
-$items = array();
-foreach ($json->sets as $value) {
+$srcSet = getJsonElementById($json->sets, $src);
+if($srcSet == null) {
+    die('Source set not found');
+}
+$items = $srcSet->contents;
+$srcSet->contents = [];
 
-	if($src != intval($value->id)) {
-		continue;
-	}
-
-	$items = $value->contents;
-	$value->contents = [];
+// Reset card owner
+foreach($json->items as $card) {
+    $card->owner = 0;
 }
 
 if(count($items) < $nbItems) {
@@ -85,6 +85,7 @@ $p2 = [];
 $p3 = [];
 $p4 = [];
 
+// 3, 2, 3 distribution
 $p1[] = $cartesCoupees[$i++];
 $p1[] = $cartesCoupees[$i++];
 $p1[] = $cartesCoupees[$i++];
@@ -135,22 +136,14 @@ foreach ($json->sets as $value) {
 		case $dst[3]:
 			$value->contents = $p4;
 			break;
-
 	}
 }
 
 // Find first player player name
-$player = NULL;
-foreach ($json->players as $value) {
-	if(intval($value->id) == intval($json->firstPlayer)) {
-		$player = $value;
-	}
-}
+$player = getJsonElementById($json->players, $json->firstPlayer);
 $json->status = 'Nouvelle partie: ' . $player->name . ' annoncez!';
 
-$jsontxt = json_encode($json);
-
-file_put_contents ( $fileName, $jsontxt );
+writeJson($fileName, $json);
 
 ?>
 
