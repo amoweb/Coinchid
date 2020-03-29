@@ -53,13 +53,18 @@ if(array_key_exists('game', $_GET) && $_GET['game']) {
     $fileName = "game" . $game . ".json";
     $json = readJson($fileName);
 
-    echo '<li><a href="' . $URL_BASIS . 'game.php?game=' . $game . '&player=0">Gestion du jeu</a>';
+    if($json == null) {
+        echo "<b>Cette partie n'existe pas.</b><br />";
+        echo '<a href="index.php">Retour</a>';
+    } else {
+        echo '<li><a href="' . $URL_BASIS . 'game.php?game=' . $game . '&player=0">Gestion du jeu</a>';
 
-    for($i = 1; $i <= 4; $i++) {
-        $p = getJsonElementById($json->players, $i);
-        echo '<li><a href="' . $URL_BASIS . 'player.php?game=' . $game . '&player=' . $i . '">';
-        echo $p->name;
-        echo '</a></li>';
+        for($i = 1; $i <= 4; $i++) {
+            $p = getJsonElementById($json->players, $i);
+            echo '<li><a href="' . $URL_BASIS . 'player.php?game=' . $game . '&player=' . $i . '">';
+            echo $p->name;
+            echo '</a></li>';
+        }
     }
 ?>
 </ul>

@@ -11,6 +11,9 @@ function getJsonElementById($list, $id) {
 }
 
 function readJson($fileName) {
+    if(!file_exists($fileName)) {
+        return null;
+    }
     $jsontxt = file_get_contents($fileName);
     return json_decode($jsontxt);
 }
