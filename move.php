@@ -108,7 +108,7 @@ if($moveAll) {
 		$value->contents = array_merge($value->contents, $items);
 	}
 
-    $json->status = $currPlayer->name . ' vient de bouger un packet.';
+    $json->status = $currPlayer->name . ' vient de bouger un paquet.';
 	
 } else {
 	// Remove from source set
