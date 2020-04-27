@@ -70,7 +70,7 @@ function move(item, src, dst) {
 	var params = "src=" + src + "&dst=" + dst + "&item=" + item;
 
 	const Http = new XMLHttpRequest();
-	const url="<?php echo $URL_BASIS; ?>coinche/move.php?nocache=" + (new Date()).getTime() + "&game=" + gameId + "&player=" + playerId;
+	const url="<?php echo $URL_BASIS; ?>move.php?nocache=" + (new Date()).getTime() + "&game=" + gameId + "&player=" + playerId;
 	Http.open("POST", url, true);
 	Http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
 	Http.setRequestHeader("Connection", "close");
