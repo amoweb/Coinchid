@@ -27,7 +27,8 @@ html, body, .container {
 	<div class="collapse navbar-collapse" id="navbarsExample02">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item active">
-				<a class="nav-link " href="javascript:distribuer();" >Distribuer</a>
+				<a class="nav-link " href="javascript:cardsAction('distribuer');" >Distribuer</a>
+				<a class="nav-link " href="javascript:cardsAction('ranger');" >Ranger</a>
 			</li>
 		</ul>
 	</div>
@@ -99,9 +100,9 @@ function moveAll(src, dst) {
 }
 setInterval ( 'update()', 1000 );
 
-function distribuer() {
+function cardsAction(act) {
 	const Http = new XMLHttpRequest();
-	const url='<?php echo $URL_BASIS; ?>distribuer.php?nocache=' + (new Date()).getTime() + '&game=' + gameId;
+	const url='<?php echo $URL_BASIS; ?>' + act + '.php?nocache=' + (new Date()).getTime() + '&game=' + gameId;
 	Http.open("GET", url);
 	Http.onreadystatechange = (e) => {
 		if(Http.responseText.length == 0) {
@@ -112,7 +113,6 @@ function distribuer() {
 		}
 	}
 	Http.send();
-
 }
 
 </script>
