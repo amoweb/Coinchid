@@ -17,8 +17,11 @@ echo "<h1>Ranger</h1>";
 
 $dstSet = getJsonElementById($json->sets, intval($json->distributeSource));
 
-foreach ($json->sets as $value) {
-    $dstSet->contents = array_merge($dstSet->contents, $value->contents);
+foreach ($json->sets as $s) {
+    if(intval($s->id) != intval($dstSet->id)) {
+        $dstSet->contents = array_merge($dstSet->contents, $s->contents);
+        $s->contents = [];
+    }
 }
 
 writeJson($fileName, $json);
