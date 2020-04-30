@@ -48,72 +48,9 @@ if(array_key_exists('game', $_GET) && $_GET['game']) {
 	return;
 }
 
-echo 'var playerId = 0;';
-echo 'var gameId = "' . $game . '";';
+displayGameJsFunction('0', $game, $URL_BASIS);
+
 ?>
-
-function update() {
-	const Http = new XMLHttpRequest();
-    const url='<?php echo $URL_BASIS; ?>reader.php?nocache=' + (new Date()).getTime() + '&game=' + gameId + '&player=' + playerId;
-	Http.open("GET", url);
-	Http.onreadystatechange = (e) => {
-		if(Http.responseText.length == 0) {
-			return;
-		}
-		if(document.getElementById("display").innerHTML.localeCompare(Http.responseText) != 0) {
-			document.getElementById("display").innerHTML = Http.responseText;
-		}
-	}
-	Http.send();
-}
-
-function move(item, src, dst) {
-	var params = "src=" + src + "&dst=" + dst + "&item=" + item;
-
-	const Http = new XMLHttpRequest();
-	const url="<?php echo $URL_BASIS; ?>move.php?nocache=" + (new Date()).getTime() + "&game=" + gameId + "&player=" + playerId;
-	Http.open("POST", url, true);
-	Http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-	Http.setRequestHeader("Connection", "close");
-	Http.onload = function () {
-		// do something to response
-		console.log(this.responseText);
-	};
-
-	Http.send(params);
-}
-
-function moveAll(src, dst) {
-	var params = "src=" + src + "&dst=" + dst + "&all=1"
-
-	const Http = new XMLHttpRequest();
-	const url="<?php echo $URL_BASIS; ?>move.php?nocache=" + (new Date()).getTime() + "&game=" + gameId + "&player=" + playerId;
-	Http.open("POST", url, true);
-	Http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-	Http.setRequestHeader("Connection", "close");
-	Http.onload = function () {
-		// do something to response
-		console.log(this.responseText);
-	};
-
-	Http.send(params);
-}
-setInterval ( 'update()', 1000 );
-
-function cardsAction(act) {
-	const Http = new XMLHttpRequest();
-	const url='<?php echo $URL_BASIS; ?>' + act + '.php?nocache=' + (new Date()).getTime() + '&game=' + gameId;
-	Http.open("GET", url);
-	Http.onreadystatechange = (e) => {
-		if(Http.responseText.length == 0) {
-			return;
-		}
-		if(document.getElementById("display").innerHTML.localeCompare(Http.responseText) != 0) {
-			document.getElementById("display").innerHTML = Http.responseText;
-		}
-	}
-	Http.send();
-}
 
 </script>
 
